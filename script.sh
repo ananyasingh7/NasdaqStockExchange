@@ -12,7 +12,7 @@ then
         java -jar tagsoup-1.2.1.jar --files $now
         rm $now.html
         totalTime=$((totalTime+1))
-        python3 xhtmlToCsv.py "$now.xhtml" 
+        python3 xhtmlToCsv.py "$now.xhtml"
         sleep 60
     done
 else
@@ -25,7 +25,7 @@ else
         java -jar tagsoup-1.2.1.jar --files $now
         rm $now.html
         totalTime=$((totalTime+1))
-        python3 xhtmlToCsv.py "$now.xhtml" 
+        python3 xhtmlToCsv.py "$now.xhtml"
         sleep 60
     done
 fi
