@@ -1,5 +1,7 @@
 import sys
 import xml.dom.minidom
+import csv
+import mysql.connector
 
 argument = str(sys.argv[1])
 file = argument.split(".")[0]
@@ -51,4 +53,19 @@ for tr in tableElements.getElementsByTagName('tr')[1:]:
 
 #print("after")
 
+cnx = mysql.connector.connect(host='localhost', user='ananya', password='password', database='test')
+cursor = cnx.cursor()
+
+cursor.execute('DELETE FROM test.Stocks1;')
+cnx.commit()
+
+with open(filename) as f:
+	next(f)
+	reader = csv.reader(f)
+	for row in reader:
+		cursor.execute('INSERT INTO test.Stocks1(exchange ,symbol, company, volume, price, chang)'' VALUES (%s, %s, %s,%s,%s,%s)',row) 
+
+cnx.commit()
+cnx.close()
 f.close()
+
